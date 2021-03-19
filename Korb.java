@@ -24,15 +24,15 @@ public class Korb
         meinStapel.pop();
         return temp;
     }
-    
+
     public Waffe getWaffe() {
         return meinStapel.top();
     }
-    
+
     public void waffeAufnehmen(Waffe meineWaffe) {
         meinStapel.push(meineWaffe);
     }
- 
+
     public int anzahlWaffen() {
         Stack<Waffe> temp = new Stack<Waffe>();
         int zaehler = 0;
@@ -47,7 +47,7 @@ public class Korb
         }
         return zaehler;
     }
-    
+
     public boolean istLeer(){
         return meinStapel.isEmpty();
     }
