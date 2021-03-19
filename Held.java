@@ -9,7 +9,7 @@ class Held extends Karacter {
     private int angriffswert;
     private boolean privat;
     private Rucksack meinRucksack;
-    //hallo, wie geht es euch?
+    
     public Held(String name, int vermoegen, int leben, int kampf, boolean privat) {
         super(name, leben, kampf);
         meinInventar = new Inventar();
