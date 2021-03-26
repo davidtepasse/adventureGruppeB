@@ -11,8 +11,9 @@ class Held extends Karacter {
     private Rucksack meinRucksack;
     private int level;
     private int erfahrungspunkte;
-
-    public Held(String name, int vermoegen, int leben, int kampf, boolean privat) {
+    private int kills,punkte;
+    
+    public Held(String name, int vermoegen, int leben, int kampf, boolean privat, Scoreboard score) {
         super(name, leben, kampf);
         meinInventar = new Inventar();
         this.vermoegen = vermoegen;
@@ -20,7 +21,9 @@ class Held extends Karacter {
         meinRucksack = new Rucksack();
         level = 0;
         erfahrungspunkte = 0;
-
+        kills = 0;
+        punkte = 0;
+        score.fuegeHeldhinzu(this);
     }
 
     //zum testen
@@ -30,7 +33,7 @@ class Held extends Karacter {
         this.vermoegen = 100;
         this.privat = privat;
         meinRucksack = new Rucksack();
-
+        
     }
     
     /**
@@ -44,7 +47,9 @@ class Held extends Karacter {
           if (lebenspunkte <= 0) {
               System.out.println("Du bist tot!");
           }
-          //level++;
+          setErfahrungspunkte(10);
+          kills++;
+          vermoegen += 30;
       }
 
     public void angriffswertBerechnen() {
@@ -78,9 +83,18 @@ class Held extends Karacter {
     
     private void setErfahrungspunkte(int erfahrungspunkte){
         this.erfahrungspunkte += erfahrungspunkte;
-        if (erfahrungspunkte > (level*100)){
+        while (erfahrungspunkte >= (level*100)){
             erfahrungspunkte -= (level*100);
             level++;
         }
     }
+    
+    void berechnePunkte(){
+        punkte = kills * 10 + level * 10; 
+    }
+  
+    // public void speicherntoScoreboard()
+    // {
+        
+    // }
 }
