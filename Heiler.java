@@ -27,9 +27,17 @@ public class Heiler extends Karacter
     /**
      * heilt /behandelt den vordersten Helden von der Wartebank
      */
-    public void heilen() {
+    public void heilen(int zeit) {
+        warten(zeit);
         Held temp = meinePraxis.heldVorlassen();
         temp.setLebenspunkte(temp.getLebenspunkte()+heilkraft);
     }
  
+    public void warten(int zeit) {
+        //"schläft" für 4 Sekunden
+        try {
+            Thread.sleep(zeit);
+        } catch (Exception e)
+        { }
+    }
 }
