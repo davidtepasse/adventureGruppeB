@@ -9,13 +9,17 @@ class Held extends Karacter {
     private int angriffswert;
     private boolean privat;
     private Rucksack meinRucksack;
-    
+    private int level;
+    private int erfahrungspunkte;
+
     public Held(String name, int vermoegen, int leben, int kampf, boolean privat) {
         super(name, leben, kampf);
         meinInventar = new Inventar();
         this.vermoegen = vermoegen;
         this.privat = privat;
         meinRucksack = new Rucksack();
+        level = 0;
+        erfahrungspunkte = 0;
 
     }
 
@@ -70,5 +74,13 @@ class Held extends Karacter {
     
     public boolean getPrivat(){
         return privat;
+    }
+    
+    private void setErfahrungspunkte(int erfahrungspunkte){
+        this.erfahrungspunkte += erfahrungspunkte;
+        if (erfahrungspunkte > (level*100)){
+            erfahrungspunkte -= (level*100);
+            level++;
+        }
     }
 }
