@@ -12,16 +12,21 @@ public class Schmied extends Karacter
 
     /**
      * Konstruktor für Objekte der Klasse Schmied
+     * 
+     * pLager wird jetzt übergeben, damit der schmied auf die Aufträge im Korb zugreifen kann
      */
-    public Schmied()
+    public Schmied(Korb pLager)
     {
         // Instanzvariable initialisieren
         super("Hauer",100,1);
-        lager = new Korb();
+        lager = pLager;
     }
 
+    //das erste Objekt in Auftrag wird als temp gespeichert, repariert und dann in lager die oberste, die als temp gespeichert wurde, gelöscht
     public void reparieren() {
-        Waffe temp = lager.waffeAusgeben();
-        temp.setZustand(temp.getZustand()+10);
+        Auftrag temp = lager.naechstenAuftragAusgeben();
+        //Fehlermeldung einbauen: kein Auftrag verfügbar (sonst NullpointerExeption)
+        temp.getWaffe().setZustand(temp.getWaffe().getZustand()+10);
+        lager.loescheOberstenAuftrag();
     }
 }
